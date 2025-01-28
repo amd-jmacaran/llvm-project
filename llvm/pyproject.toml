@@ -1,0 +1,45 @@
+[build-system]
+requires = ["scikit-build-core", "rocm-cmake"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "rocm-llvm"
+readme = "README.txt"
+requires-python = ">=3.7"
+version = "0.1.0"
+
+[tool.scikit-build]
+build.verbose = true
+cmake.args = [
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DLLVM_ENABLE_PROJECTS=clang;lld;clang-tools-extra;mlir",
+    "-DLLVM_ENABLE_RUNTIMES=compiler-rt;libunwind;libcxx;libcxxabi",
+    "-DCLANG_ENABLE_AMDCLANG=ON",
+    "-DLLVM_TARGETS_TO_BUILD=AMDGPU;X86",
+    "-DLIBCXX_ENABLE_SHARED=OFF",
+    "-DLIBCXX_ENABLE_STATIC=ON",
+    "-DLIBCXX_INSTALL_LIBRARY=OFF",
+    "-DLIBCXX_INSTALL_HEADERS=OFF",
+    "-DLIBCXXABI_ENABLE_SHARED=OFF",
+    "-DLIBCXXABI_ENABLE_STATIC=ON",
+    "-DLIBCXXABI_INSTALL_STATIC_LIBRARY=OFF",
+    "-DLLVM_BUILD_DOCS=OFF",
+    "-DLLVM_ENABLE_SPHINX=OFF",
+    "-DLLVM_ENABLE_ASSERTIONS=OFF",
+    "-DLLVM_ENABLE_Z3_SOLVER=OFF",
+    "-DLLVM_ENABLE_ZLIB=ON",
+    "-DCLANG_DEFAULT_LINKER=lld",
+    "-DCLANG_DEFAULT_RTLIB=compiler-rt",
+    "-DCLANG_DEFAULT_UNWINDLIB=libgcc",
+    "-DSANITIZER_AMDGPU=OFF",
+    "-DPACKAGE_VENDOR=AMD",
+    "-DCLANG_LINK_FLANG_LEGACY=ON",
+    "-DCMAKE_CXX_STANDARD=17",
+    "-DROCM_LLVM_BACKWARD_COMPAT_LINK=$(Build.BinariesDirectory)/llvm",
+    "-DROCM_LLVM_BACKWARD_COMPAT_LINK_TARGET=./lib/llvm"
+]
+
+[tool.cibuildwheel]
+build = "cp3*manylinux*"
+manylinux-x86_64-image = "manylinux_2_28"
+archs = ["x86_64"]
