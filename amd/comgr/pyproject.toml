@@ -12,7 +12,7 @@ version = "0.1.0"
 build.verbose = true
 cmake.args = [
     "-DCMAKE_BUILD_TYPE=Release",
-    "-DCOMGR_DISABLE_SPIRV=1"
+    "-DCOMGR_DISABLE_SPIRV=1",
     "-DCMAKE_PREFIX_PATH=/home/rocm/.local/lib/python3.10/site-packages"
 ]
 
