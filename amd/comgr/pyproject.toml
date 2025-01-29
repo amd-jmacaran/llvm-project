@@ -1,0 +1,21 @@
+[build-system]
+requires = ["scikit-build-core", "rocm-cmake"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "rocm-comgr"
+readme = "../README.md"
+requires-python = ">=3.7"
+version = "0.1.0"
+
+[tool.scikit-build]
+build.verbose = true
+cmake.args = [
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DCOMGR_DISABLE_SPIRV=1"
+]
+
+[tool.cibuildwheel]
+build = "cp3*manylinux*"
+manylinux-x86_64-image = "manylinux_2_28"
+archs = ["x86_64"]
