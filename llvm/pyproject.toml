@@ -4,7 +4,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "rocm-llvm"
-readme = "README.txt"
+readme = "../README.md"
 requires-python = ">=3.7"
 version = "0.1.0"
 
@@ -34,9 +34,7 @@ cmake.args = [
     "-DSANITIZER_AMDGPU=OFF",
     "-DPACKAGE_VENDOR=AMD",
     "-DCLANG_LINK_FLANG_LEGACY=ON",
-    "-DCMAKE_CXX_STANDARD=17",
-    "-DROCM_LLVM_BACKWARD_COMPAT_LINK=$(Build.BinariesDirectory)/llvm",
-    "-DROCM_LLVM_BACKWARD_COMPAT_LINK_TARGET=./lib/llvm"
+    "-DCMAKE_CXX_STANDARD=17"
 ]
 
 [tool.cibuildwheel]
