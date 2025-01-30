@@ -4,7 +4,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "rocm-device-libs"
-requires-python = "3.7"
+requires-python = "==3.7"
 readme = "README.md"
 dynamic = ["version"]
 
