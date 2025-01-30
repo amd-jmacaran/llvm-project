@@ -3,16 +3,25 @@ requires = ["scikit-build-core"]
 build-backend = "scikit_build_core.build"
 
 [project]
-name = "rocm-device-libs"
-readme = "../README.md"
-requires-python = ">=3.7"
-version = "0.1.0"
+readme = "README.md"
+dynamic = ["name","version"]
+
+[tool.scikit-build.metadata.version]
+provider = "scikit_build_core.metadata.regex"
+input = "CMakeLists.txt"
+regex = '''project\(\s*(?P<name>\S+)\s*VERSION\s*"(?P<version>\d+\.\d+\.\d+)"\s*\)'''
+result = "{name}-{version}"
+
+# Transform project name to lowercase and replace underscores with hyphens
+[tool.setuptools.dynamic]
+version = {cmd = "python -c 'import re; name = \"{name}\".lower().replace(\"_\", \"-\"); print(f\"{name}-{version}\")'"}
 
 [tool.scikit-build]
 build.verbose = true
+wheel.py-api = "cp37"
 cmake.args = [
     "-DCMAKE_BUILD_TYPE=Release",
-    "-DCMAKE_PREFIX_PATH=/home/rocm/.local/lib/python3.10/site-packages"
+    "-DCMAKE_PREFIX_PATH=$(python -m site --user-site)"
 ]
 
 [tool.cibuildwheel]

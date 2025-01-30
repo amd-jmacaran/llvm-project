@@ -5,10 +5,10 @@ build-backend = "scikit_build_core.build"
 [project]
 name = "rocm-llvm"
 readme = "../README.md"
-requires-python = ">=3.7"
-version = "0.1.0"
+version = "19.0.0"
 
 [tool.scikit-build]
+wheel.py-api = "cp37"
 build.verbose = true
 cmake.args = [
     "-DCMAKE_BUILD_TYPE=Release",

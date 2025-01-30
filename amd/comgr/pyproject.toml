@@ -4,16 +4,22 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "rocm-comgr"
-readme = "../README.md"
-requires-python = ">=3.7"
-version = "0.1.0"
+readme = "README.md"
+dynamic = ["version"]
+
+[tool.scikit-build.metadata.version]
+provider = "scikit_build_core.metadata.regex"
+input = "VERSION.txt"
+regex = '''(?m)#COMGR_VERSION_MAJOR\s*\n(?P<major>\d+)\s*\n#COMGR_VERSION_MINOR\s*\n(?P<minor>\d+)'''
+result = "{major}.{minor}.0"
 
 [tool.scikit-build]
 build.verbose = true
+wheel.py-api = "cp37"
 cmake.args = [
     "-DCMAKE_BUILD_TYPE=Release",
     "-DCOMGR_DISABLE_SPIRV=1",
-    "-DCMAKE_PREFIX_PATH=/home/rocm/.local/lib/python3.10/site-packages"
+    "-DCMAKE_PREFIX_PATH=$(python -m site --user-site)"
 ]
 
 [tool.cibuildwheel]
