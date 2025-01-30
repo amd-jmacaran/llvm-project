@@ -5,7 +5,7 @@ build-backend = "scikit_build_core.build"
 [project]
 name = "rocm-comgr"
 readme = "README.md"
-requires-python = "==3.7"
+requires-python = ">=3.7"
 dynamic = ["version"]
 
 [tool.scikit-build.metadata.version]
