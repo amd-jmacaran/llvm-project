@@ -1,5 +1,8 @@
 [build-system]
-requires = ["scikit-build-core"]
+requires = [
+       "scikit-build-core",
+       "rocm-llvm @ https://externalrocmci.blob.core.windows.net/wheels/rocm_llvm-19.0.0-cp37-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+]
 build-backend = "scikit_build_core.build"
 
 [project]
