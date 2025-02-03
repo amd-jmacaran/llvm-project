@@ -29,3 +29,6 @@ cmake.args = [
 build = "cp37*manylinux*"
 manylinux-x86_64-image = "manylinux_2_28"
 archs = ["x86_64"]
+# auditwheel expects compiled objects or libraries
+# this project on its own does not produce these, so replace the auditwheel step
+repair-wheel-command = "{python} -m pip wheel . -w {dest_dir}"
