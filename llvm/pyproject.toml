@@ -1,3 +1,7 @@
+# build this from the llvm-project root
+# e.g., pip install llvm
+# e.g., cibuildwheel llvm
+
 [build-system]
 requires = ["scikit-build-core"]
 build-backend = "scikit_build_core.build"

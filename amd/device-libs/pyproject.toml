@@ -1,3 +1,6 @@
+# build this from the amd/device-libs dir
+# e.g., cd amd/device-libs; pip install . or cibuildwheel
+
 [build-system]
 requires = [
        "scikit-build-core",
