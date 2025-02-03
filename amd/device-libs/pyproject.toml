@@ -21,8 +21,7 @@ result = "{version}"
 build.verbose = true
 wheel.py-api = "cp37"
 cmake.args = [
-    "-DCMAKE_BUILD_TYPE=Release",
-    "-DCMAKE_PREFIX_PATH=/home/rocm/.local/lib/python3.10/site-packages"
+    "-DCMAKE_BUILD_TYPE=Release"
 ]
 
 [tool.cibuildwheel]
