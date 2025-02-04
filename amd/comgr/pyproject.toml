@@ -27,7 +27,9 @@ build.verbose = true
 wheel.py-api = "cp37"
 cmake.args = [
     "-DCMAKE_BUILD_TYPE=Release",
-    "-DCOMGR_DISABLE_SPIRV=1"
+    "-DCOMGR_DISABLE_SPIRV=1",
+    "-DBUILD_TESTING=OFF" # test directory has pre-built .so going against spirit of manylinux
+    # testing flag also errors out, looking for hip-runtime in cibuildwheel virtual environment but pip install works fine
 ]
 
 [tool.cibuildwheel]
