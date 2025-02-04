@@ -16,7 +16,7 @@ dynamic = ["version"]
 [tool.scikit-build.metadata.version]
 provider = "scikit_build_core.metadata.regex"
 input = "CMakeLists.txt"
-regex = '''project\(\s*\S+\s+VERSION\s+(?P<version>"?\d+\.\d+\.\d+"?)'''
+regex = '''project\(\s*\S+\s+VERSION\s+"?(?P<version>\d+\.\d+\.\d+)"?'''
 result = "{version}"
 
 [tool.scikit-build]
