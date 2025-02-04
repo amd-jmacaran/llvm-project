@@ -1,0 +1,33 @@
+# build this from the amd/hipcc dir
+# e.g., cd amd/hipcc; pip install . or cibuildwheel
+
+[build-system]
+requires = [
+       "scikit-build-core",
+]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "rocm-hipcc"
+requires-python = ">=3.7"
+readme = "README.md"
+dynamic = ["version"]
+
+[tool.scikit-build.metadata.version]
+provider = "scikit_build_core.metadata.regex"
+input = "CMakeLists.txt"
+regex = '''project\(\s*\S+\s*VERSION\s*"(?P<version>\d+\.\d+\.\d+)"\s*\)'''
+result = "{version}"
+
+[tool.scikit-build]
+build.verbose = true
+wheel.py-api = "cp37"
+cmake.args = [
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DHIPCC_BACKWARD_COMPATIBILITY=OFF"
+]
+
+[tool.cibuildwheel]
+build = "cp37*manylinux*"
+manylinux-x86_64-image = "manylinux_2_28"
+archs = ["x86_64"]
